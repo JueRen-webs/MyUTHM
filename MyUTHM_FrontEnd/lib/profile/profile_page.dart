@@ -155,7 +155,7 @@ class ProfilePage extends StatelessWidget {
             if (snapshot.hasError || !snapshot.hasData || snapshot.data == null) {
               return const Center(
                 child: Text(
-                  '无法加载用户资料\n请确认已成功登录并刷新',
+                  'Unable to Load',
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),

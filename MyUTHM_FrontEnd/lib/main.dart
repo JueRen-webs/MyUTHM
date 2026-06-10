@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 引入你的各个页面
-import 'home_page.dart';
+import 'home/home_page.dart';
 import 'lecturer_dashboard_page.dart';
 import 'academic_page.dart';
 import 'lecturer_academic_page.dart';
