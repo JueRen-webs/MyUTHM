@@ -43,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       if (user != null) {
+        DatabaseHelper.currentUserId = username;
         print("Login Success: ${user['Name']}, Role: ${user['Role']}");
 
         DashboardRole currentRole;

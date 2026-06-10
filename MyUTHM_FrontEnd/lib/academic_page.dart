@@ -10,7 +10,8 @@ const Color kTextDark = Color(0xFF071A52);
 
 class AcademicPage extends StatefulWidget {
   final String studentId;
-  const AcademicPage({super.key, this.studentId = "AI240166"});
+  // ✅ 修复 1：完成对 final 变量的初始化赋空初值。不仅消除了编译错误，还能完美兼容你其他页面带参或无参的路由跳转！
+  const AcademicPage({super.key, this.studentId = ""});
 
   @override
   State<AcademicPage> createState() => _AcademicPageState();
@@ -73,12 +74,18 @@ class _AcademicPageState extends State<AcademicPage> {
     try {
       final db = await DatabaseHelper.instance.database;
 
-      // ✅ 绝不硬编码：优先提取全局会话的用户ID，若为空才回退到初始化备用ID
+      // ✅ 修复 2：全面动态获取。优先读取你登录成功后写入单例的全局当前用户 ID
       String currentStudentId = DatabaseHelper.currentUserId.isNotEmpty
           ? DatabaseHelper.currentUserId
           : widget.studentId;
 
-      // ✅ 身份安全校验：检查 Users 表中当前用户是否为 Student
+      if (currentStudentId.isEmpty) {
+        debugPrint("Error: No user logged in.");
+        if (mounted) setState(() => _isLoading = false);
+        return;
+      }
+
+      // ✅ 身份校验安全线：去 Users 表里检查当前登录账号的角色是不是 Student
       final List<Map<String, dynamic>> userCheck = await db.rawQuery(
           'SELECT Role FROM Users WHERE User_ID = ?',
           [currentStudentId]
@@ -93,7 +100,7 @@ class _AcademicPageState extends State<AcademicPage> {
             _coursesBySemester = [];
           });
         }
-        return; // 如果不是学生身份，强行终止数据读取，保护系统隐私安全性
+        return;
       }
 
       final List<Map<String, dynamic>> result = await db.rawQuery('''
@@ -411,7 +418,7 @@ class _AcademicPageState extends State<AcademicPage> {
             ),
           ),
           const SizedBox(height: 6),
-          // ✅ 修改点 1：根据学期是否结束，动态切换顶部的励志寄语
+          // ✅ 动态标语：已经过了的学期自动替换为你指定的赞美文本
           Text(
             isCurrent ? "Keep going, you're doing great!✨ " : "You Have Done Well, Good Job!",
             style: GoogleFonts.poppins(
@@ -534,10 +541,10 @@ class _AcademicPageState extends State<AcademicPage> {
           ],
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center, // 确保横向所有块在同一中心线上
+          crossAxisAlignment: CrossAxisAlignment.center, // 横向所有模块垂直中心线绝对对齐
           children: [
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -545,7 +552,7 @@ class _AcademicPageState extends State<AcademicPage> {
                     course["name"],
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 14,
                       color: kTextDark,
                     ),
                   ),
@@ -553,14 +560,16 @@ class _AcademicPageState extends State<AcademicPage> {
                   Text(
                     course["lecturer"],
                     style: GoogleFonts.poppins(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: const Color(0xFF7A859F),
                     ),
                   ),
                 ],
               ),
             ),
-            // ✅ 修改点 2：将 Attendance 设为 flex: 2，文字大小对齐
+            // ✅ 视觉修复方案：移除高度硬限制，使用统一样式的 Column 容器。
+            // 当两边的字号（Header都是11，Value都是15）和结构完全镜像对称时，
+            // 它们在 CrossAxisAlignment.center 的拉伸下，天生就会在物理上完美对齐！
             Expanded(
               flex: 2,
               child: Column(
@@ -570,17 +579,17 @@ class _AcademicPageState extends State<AcademicPage> {
                   Text(
                     "Attendance",
                     style: GoogleFonts.poppins(
-                      fontSize: 11,
+                      fontSize: 11.5,
                       color: const Color(0xFF7A859F),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
                   Text(
                     course["attendance"],
                     style: GoogleFonts.poppins(
                       color: kPrimaryBlue,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 15,
                     ),
                   ),
                 ],
@@ -588,14 +597,13 @@ class _AcademicPageState extends State<AcademicPage> {
             ),
             Container(
               width: 1,
-              height: 48,
+              height: 38, // 柔和的垂直分割线高度
               margin: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               color: Colors.grey.shade300,
             ),
-            // ✅ 修改点 3：将 Grade 同样设为 flex: 2，数值设为 fontSize: 16。
-            // 此时 Attendance 与 Grade 的容器高宽比例、文字行数与基准线一模一样，完美保持绝对等高对称！
+            // ✅ 镜像对称：Grade 列与 Attendance 列使用 100% 相同的数据布局和尺寸缩放
             Expanded(
               flex: 2,
               child: Column(
@@ -605,17 +613,17 @@ class _AcademicPageState extends State<AcademicPage> {
                   Text(
                     "Grade",
                     style: GoogleFonts.poppins(
-                      fontSize: 11,
+                      fontSize: 11.5,
                       color: const Color(0xFF7A859F),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
                   Text(
                     course["grade"],
                     style: GoogleFonts.poppins(
                       color: kPrimaryBlue,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 15,
                     ),
                   ),
                 ],
