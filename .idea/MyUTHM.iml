@@ -43,6 +43,27 @@
       <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/linux/flutter/ephemeral/.plugin_symlinks/file_picker/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/linux/flutter/ephemeral/.plugin_symlinks/file_picker/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/linux/flutter/ephemeral/.plugin_symlinks/file_picker/build" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/linux/flutter/ephemeral/.plugin_symlinks/file_picker/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/linux/flutter/ephemeral/.plugin_symlinks/file_picker/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/linux/flutter/ephemeral/.plugin_symlinks/file_picker/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/file_picker/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/file_picker/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/file_picker/build" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/file_picker/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/file_picker/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/file_picker/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/my_clean_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/my_clean_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/my_clean_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/permission_handler_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/permission_handler_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/permission_handler_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/permission_handler_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/permission_handler_windows/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/MyUTHM_FrontEnd/windows/flutter/ephemeral/.plugin_symlinks/permission_handler_windows/example/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

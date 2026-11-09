@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart'; // 必须导入 main.dart 以使用 mainGlobalKey
+import 'main.dart';
 import 'theme/app_colors.dart';
 import 'database_helper.dart';
 
@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   final _userController = TextEditingController();
   final _passController = TextEditingController();
   bool _obscurePassword = true;
-  bool _isLoading = false; // 添加加载状态
+  bool _isLoading = false;
 
   Future<void> _doLogin() async {
     final username = _userController.text.trim().toUpperCase();
@@ -32,10 +32,9 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      // Try to talk to the database
-      var user = await DatabaseHelper.instance.loginWithExistingAccount(username, password);
+      var user = await DatabaseHelper.instance
+          .loginWithExistingAccount(username, password);
 
-      // VERY IMPORTANT: Check if the widget is still on screen before updating UI
       if (!mounted) return;
 
       setState(() {
@@ -44,6 +43,9 @@ class _LoginPageState extends State<LoginPage> {
 
       if (user != null) {
         DatabaseHelper.currentUserId = username;
+        DatabaseHelper.currentUserRole = user['Role'] ?? '';
+        DatabaseHelper.currentUserName = user['Name']?.toString() ?? '';
+
         print("Login Success: ${user['Name']}, Role: ${user['Role']}");
 
         DashboardRole currentRole;
@@ -62,21 +64,18 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         );
-
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Invalid Matric No or Password')),
         );
       }
     } catch (e) {
-      // IF SOMETHING CRASHES, CATCH IT HERE!
       if (!mounted) return;
 
       setState(() {
-        _isLoading = false; // Stop the spinner!
+        _isLoading = false;
       });
 
-      // Print the error to the console and show it on the screen
       print("❌ Database CRASH: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -151,7 +150,8 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: colors.brandPrimary),
                 child: _isLoading
                     ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text("LOGIN", style: TextStyle(color: Colors.white)),
+                    : const Text("LOGIN",
+                        style: TextStyle(color: Colors.white)),
               ),
             ),
           ],

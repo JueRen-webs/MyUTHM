@@ -51,7 +51,9 @@ class FlatIdentityHeader extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            "(Matric No: ${userData['User_ID'] ?? '-'})",
+            userData['Role']?.toString().toLowerCase() == 'lecturer'
+                ? "(Staff ID: ${userData['User_ID'] ?? '-'})"
+                : "(Matric No: ${userData['User_ID'] ?? '-'})",
             style: GoogleFonts.poppins(
               fontSize: 14,
               color: Colors.white.withOpacity(0.85),
@@ -145,7 +147,7 @@ class WeekGridProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    const int totalWeeks = 14; const int currentWeek = 8;
+    const int totalWeeks = 14; const int currentWeek = 14;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

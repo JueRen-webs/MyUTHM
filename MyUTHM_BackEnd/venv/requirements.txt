@@ -1,0 +1,7 @@
+Flask
+flask-cors
+PyJWT
+Werkzeug
+PyMySQL
+cryptography
+gunicorn

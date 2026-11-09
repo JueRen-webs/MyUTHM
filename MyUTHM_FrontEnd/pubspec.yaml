@@ -33,7 +33,10 @@ dependencies:
   sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.0 # 💡 运行 flutter pub get 引入它
   path: ^1.9.0
-
+  file_picker: ^8.0.0
+  flutter_downloader: ^1.11.8
+  permission_handler: ^11.3.1
+  path_provider: ^2.1.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -44,6 +47,7 @@ dependencies:
   video_player: ^2.8.1
   intl: ^0.19.0  # 👈 新增这一行，用于日期格式化 (DateFormat)
   flutter_animate: ^4.5.2
+  open_filex: ^4.7.0
 
 dev_dependencies:
   flutter_test:
@@ -75,3 +79,12 @@ flutter:
     - assets/logo_body.png
     - assets/logo_dots.png
     - assets/MyUTHM.db
+    - assets/pyq/Discrete Structure/
+    - assets/pyq/Human Computer Interaction/
+    - assets/pyq/Object-Oriented Programming/
+    - assets/pyq/Operating System/
+    - assets/pyq/S4 Computer Crime & Digital Forensics/
+    - assets/pyq/S4 Computer Network/
+    - assets/pyq/S4 Cryptography/
+    - assets/pyq/S4 Database/
+    - assets/pyq/Software Security/
